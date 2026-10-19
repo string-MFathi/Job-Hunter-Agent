@@ -1,0 +1,13 @@
+# Python & Environment
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Project State & Data
+data/state/
+data/cvs/*.pdf
+!data/cvs/dummy_cv.pdf
+.DS_Store
+nohup.out
+*.log
