@@ -5,9 +5,8 @@ load_dotenv()
 
 # 1. مسميات الوظائف المستهدفة (مقسمة حسب المسار لتوجيه الـ CV المناسب حتمياً بدون استهلاك Tokens)
 AI_ROLES = [
-    "AI Agent Developer",
-    "AI Automation Engineer",
-    "Agentic AI Engineer"
+    "Software Engineer",
+    "Mobile App Developer",
 ]
 
 PM_ROLES = [
@@ -29,61 +28,49 @@ ARAB_COUNTRIES_KEYWORDS = [
     "دبي", "مصر", "القاهرة", "قطر", "الكويت", "البحرين", "عمان", "الأردن"
 ]
 
-# 4. الكلمات المفتاحية للعمل عن بعد (شرط صارم)
-REMOTE_POSITIVE_KEYWORDS = [
-    "remote", "work from home", "wfh", "anywhere", "distributed", "عن بعد", "عن بُعد"
-]
-
-# الكلمات التي تستبعد الوظيفة إذا كانت إجبارية (On-site / Hybrid)
-NON_REMOTE_NEGATIVE_KEYWORDS = [
-    "on-site only", "onsite only", "in-office only", "hybrid only", "must relocate"
-]
 
 # 5. مسارات ملفات السيرة الذاتية
-CV_AI_PATH = os.path.join("data", "cvs", "CV_AI.pdf")
-CV_PM_PATH = os.path.join("data", "cvs", "CV_PM.pdf")
+CV_AI_PATH = os.path.join("data", "cvs", "CV_1.pdf")
+CV_PM_PATH = os.path.join("data", "cvs", "CV_2.pdf")
 
-# 6. الروابط الشخصية الثابتة
-LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-fathi-pm/"
-GITHUB_URL = "https://github.com/string-MFathi"
+# 5. Public Links Placeholders
+LINKEDIN_URL = "https://www.linkedin.com/in/your-profile/"
+GITHUB_URL = "https://github.com/your-username"
 
-# 7. قوالب الإيميل المعتمدة
+# 6. Generic Outreach Email Templates
 AI_EMAIL_TEMPLATE = """Hi {hiring_name},
 
 {opening_hook}
 
-Most "AI agent" portfolios stop at a working demo. Mine had to survive production: I built an autonomous outbound lead-discovery engine — a fail-closed pipeline that recovers from API failures via SQLite idempotency locks and automated state reconciliation, with LLM output constrained to schema-validated JSON specifically to eliminate hallucinated claims before they reach production.
+I built an autonomous outbound lead-discovery engine — a fail-closed pipeline featuring SQLite idempotency locks, automated state reconciliation, and schema-validated LLM extraction to eliminate hallucinations in production.
 
-That's the gap I'd close for {company_name}: {bridge_sentence}
+That's the technical rigor I'd bring to {company_name}: {bridge_sentence}
 
-Repo with the actual architecture: {github_url}
+Repo: {github_url}
 
-Worth a 15-minute call to see if this maps to what you're building remotely?
+Worth a 15-minute remote call?
 
-Mohamed Fathi
-LinkedIn: {linkedin_url}
-GitHub: {github_url}"""
+[Your Name]
+LinkedIn: {linkedin_url}"""
 
 PM_EMAIL_TEMPLATE = """Hi {hiring_name},
 
 {opening_hook}
 
-Most PMs hand bugs to engineering and wait. In my previous product roles, I tested API endpoints myself via Postman, monitored cloud infrastructure directly, and cut average ticket resolution time by 16% — because I could diagnose the technical root cause before escalating, not after.
-
-I also built end-to-end workflow automations (Zapier/Make & custom Python agents) that cut payment and operational processing cycles from 5 days to 24 hours, while maintaining 97% CSAT.
+In my previous product roles, I monitored cloud infrastructure directly and cut average ticket resolution time by diagnosing technical root causes before escalating. I also engineered end-to-end workflow automations that reduced processing cycles significantly.
 
 {bridge_sentence}
 
-Happy to walk through the specifics on a short remote call.
+Happy to discuss on a short remote call.
 
-Mohamed Fathi
-LinkedIn: {linkedin_url}
-Portfolio & GitHub: {github_url}"""
+[Your Name]
+LinkedIn: {linkedin_url}"""
 
 def get_role_track(job_title: str) -> str:
-    """توجيه حتمي (Deterministic Routing) لتحديد المسار والـ CV بدون استهلاك Tokens"""
     title_low = (job_title or "").lower()
     for pm_role in PM_ROLES:
         if pm_role.lower() in title_low or "product manager" in title_low:
             return "PM"
     return "AI"
+
+
